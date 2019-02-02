@@ -166,6 +166,7 @@ CommandLine::setup()
 	m_deskewAngle = fetchDeskewAngle();
 	m_startFilterIdx = fetchStartFilterIdx();
 	m_endFilterIdx = fetchEndFilterIdx();
+    m_NumWorkers = fetchNumWorkers();
 }
 
 
@@ -456,6 +457,14 @@ CommandLine::fetchEndFilterIdx()
 		return 5;
 
 	return m_options.value("end-filter").toInt() - 1;
+}
+
+int CommandLine::fetchNumWorkers()
+{
+    if(!hasNumWorkers())
+        return 1; //Default to single thread
+
+    return m_options.value("num-workers").toInt();
 }
 
 output::DewarpingMode

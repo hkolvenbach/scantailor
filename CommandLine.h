@@ -81,6 +81,7 @@ public:
 	bool hasDespeckle() const { return contains("despeckle"); }
 	bool hasDewarping() const { return contains("dewarping"); }
 	bool hasDepthPerception() const { return contains("dewarping"); }
+    bool hasNumWorkers() const { return contains("num-workers"); } // For Multithreading
 
 	page_split::LayoutType getLayout() const { return m_layoutType; }
 	Qt::LayoutDirection getLayoutDirection() const { return m_layoutDirection; }
@@ -140,6 +141,7 @@ private:
 	output::DewarpingMode m_dewarpingMode;
 	output::DespeckleLevel m_despeckleLevel;
 	output::DepthPerception m_depthPerception;
+    int m_NumWorkers;
 
 	void parseCli(QStringList const& argv);
 	void addImage(QString const& path);
@@ -161,6 +163,7 @@ private:
 	output::DewarpingMode fetchDewarpingMode();
 	output::DespeckleLevel fetchDespeckleLevel();
 	output::DepthPerception fetchDepthPerception();
+    int fetchNumWorkers(); //For Multithreading
 };
 
 #endif
